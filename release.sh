@@ -1,5 +1,6 @@
 #!/bin/sh
 
+rm -rf ./uview-ui-release-build/index.js
 ./node_modules/.bin/webpack
 rm -rf uview-ui-release
 cp -r ./uview-ui ./uview-ui-release
