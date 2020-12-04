@@ -1,5 +1,5 @@
 <template>
-	<u-popup :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto" :safeAreaInsetBottom="safeAreaInsetBottom" @close="close" :z-index="uZIndex">
+	<u-popup :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto" :safeAreaInsetBottom="safeAreaInsetBottom" @close="clickMask" :z-index="uZIndex">
 		<view class="u-datetime-picker">
 			<view class="u-picker-header" @touchmove.stop.prevent="">
 				<view class="u-btn-picker u-btn-picker--tips" 
@@ -84,11 +84,13 @@
 					</picker-view-column>
 				</picker-view>
 				<picker-view v-else-if="mode == 'multiSelector'" :value="valueArr" @change="change" class="u-picker-view" @pickstart="pickstart" @pickend="pickend">
-					<picker-view-column v-if="!reset" v-for="(item, index) in range" :key="index">
-						<view class="u-column-item" v-for="(item1, index1) in item" :key="index1">
-							<view class="u-line-1">{{ getItemValue(item1, 'multiSelector') }}</view>
-						</view>
-					</picker-view-column>
+					<template v-for="(item, index) in range" >
+						<picker-view-column v-if="!reset" :key="index">
+							<view class="u-column-item" v-for="(item1, index1) in item" :key="index1">
+								<view class="u-line-1">{{ getItemValue(item1, 'multiSelector') }}</view>
+							</view>
+						</picker-view-column>
+					</template>
 				</picker-view>
 			</view>
 		</view>
@@ -520,6 +522,11 @@ export default {
 			this.area = tmp;
 			this.areas = areas[this.province][this.city];
 			this.valueArr.splice(2, 1, this.area);
+		},
+		// 点击遮罩层关闭
+		clickMask() {
+			this.$emit('close-mask', true)
+			this.close()
 		},
 		close() {
 			this.$emit('input', false);

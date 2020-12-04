@@ -426,7 +426,7 @@ export default {
 }
 
 .u-drawer-content-visible {
-	transform: translate3D(0px, 0px, 0px) !important;
+	transform: translate3D(0, 0, 0) !important;
 }
 
 .u-close {
