@@ -9,7 +9,7 @@
 				<u-icon name="arrow-down-fill" size="26" color="#c0c4cc"></u-icon>
 			</view>
 		</view> -->
-		<u-popup :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto" :safeAreaInsetBottom="safeAreaInsetBottom" @close="close" :z-index="uZIndex">
+		<u-popup :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto" :safeAreaInsetBottom="safeAreaInsetBottom" @close="clickMask" :z-index="uZIndex">
 			<view class="u-select">
 				<view class="u-select__header" @touchmove.stop.prevent="">
 					<view
@@ -330,6 +330,11 @@ export default {
 					this.selectValue.push(tmp);
 				})
 			}
+		},
+		// 点击遮罩层关闭
+		clickMask() {
+			this.$emit('close-mask', true)
+			this.close()
 		},
 		close() {
 			this.$emit('input', false);

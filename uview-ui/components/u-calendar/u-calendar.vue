@@ -1,6 +1,6 @@
 <template>
-	<u-popup closeable :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto"
-	 :safeAreaInsetBottom="safeAreaInsetBottom" @close="close" :z-index="uZIndex" :border-radius="borderRadius" :closeable="closeable">
+	<u-popup :maskCloseAble="maskCloseAble" mode="bottom" :popup="false" v-model="value" length="auto"
+	 :safeAreaInsetBottom="safeAreaInsetBottom" @close="clickMask" :z-index="uZIndex" :border-radius="borderRadius" :closeable="closeable">
 		<view class="u-calendar">
 			<view class="u-calendar__header">
 				<view class="u-calendar__header__text" v-if="!$slots['tooltip']">
@@ -419,6 +419,11 @@
 						}
 					}
 				}
+			},
+			// 点击遮罩层关闭
+			clickMask() {
+				this.$emit('close-mask', true)
+				this.close()
 			},
 			close() {
 				// 修改通过v-model绑定的父组件变量的值为false，从而隐藏日历弹窗

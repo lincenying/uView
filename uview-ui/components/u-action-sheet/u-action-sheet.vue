@@ -139,6 +139,7 @@
 			},
 			// 弹窗关闭
 			popupClose() {
+				this.$emit('close-mask', true)
 				this.$emit('input', false);
 			},
 			// 点击某一个item
