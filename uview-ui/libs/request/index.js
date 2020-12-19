@@ -23,8 +23,7 @@ class Request {
 		options.responseType = options.responseType || this.config.responseType;
 		options.url = options.url || '';
 		options.params = options.params || {};
-		// 使用深度合并, 避免自定义请求header污染默认配置
-		options.header = deepMerge(this.config.header, options.header);
+		options.header = Object.assign({}, this.config.header, options.header);
 		options.method = options.method || this.config.method;
 
 		return new Promise((resolve, reject) => {
