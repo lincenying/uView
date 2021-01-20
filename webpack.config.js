@@ -9,7 +9,7 @@ module.exports = {
 		path: __dirname + "/uview-ui-release-build",
         filename: "[name].js",
         libraryExport: "default",
-        libraryTarget: 'commonjs2'
+		libraryTarget: 'commonjs2'
     },
     module: {
         rules: [
